@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Institute for Porcine Aeronautics</title>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#dbe8f3;--sky2:#b9d3ea;--ink:#10243e;--mute:#43597a;--pink:#e9929e;--pinkd:#b8566a;--card:#f6fafd;--line:#9db7d1;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sky:#0e1d33;--sky2:#17304f;--ink:#e6eef8;--mute:#9fb3cd;--pink:#f0a0ab;--pinkd:#f0a0ab;--card:#142842;--line:#2c4a6e;color-scheme:dark}}
+:root[data-theme="dark"]{--sky:#0e1d33;--sky2:#17304f;--ink:#e6eef8;--mute:#9fb3cd;--pink:#f0a0ab;--pinkd:#f0a0ab;--card:#142842;--line:#2c4a6e;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--sky);color:var(--ink);font:18px/1.6 "Source Serif 4",Georgia,serif}
+h1,h2,h3,.sans{font-family:"Familjen Grotesk",system-ui,sans-serif}
+nav{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:1rem clamp(1rem,5vw,4rem);font-family:"Familjen Grotesk",system-ui,sans-serif;font-weight:500}
+nav a{color:var(--ink);text-decoration:none;margin-left:1.2rem}
+nav a:first-child{margin:0;font-weight:700}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--pinkd);outline-offset:3px}
+#hero{position:relative;height:min(86vh,680px);overflow:hidden;background:linear-gradient(var(--sky) 0%,var(--sky2) 100%);touch-action:none;cursor:crosshair}
+#hero .txt{position:absolute;left:clamp(1rem,5vw,4rem);top:6%;max-width:34rem;pointer-events:none}
+h1{font-size:clamp(2.6rem,8vw,5.6rem);line-height:.95;margin:0 0 1rem;letter-spacing:-.02em}
+.lede{color:var(--mute);margin:0}
+#pig{position:absolute;left:0;top:0;width:150px;will-change:transform}
+#wing{transform-origin:46px 30px;animation:flap .5s ease-in-out infinite alternate}
+@keyframes flap{to{transform:rotate(-34deg)}}
+@media (prefers-reduced-motion:reduce){#wing{animation:none}}
+.gauge{position:absolute;z-index:2;right:clamp(1rem,4vw,3rem);bottom:1.2rem;background:var(--card);border:2px solid var(--ink);padding:.7rem 1rem;font-family:"Familjen Grotesk",sans-serif;min-width:200px}
+.gauge b{font-size:1.8rem;display:block;line-height:1.1}
+.gauge small{color:var(--mute)}
+.hint{position:absolute;z-index:2;left:clamp(1rem,5vw,4rem);bottom:1.4rem;color:var(--mute);font-size:.95rem;margin:0}
+.cloud{position:absolute;bottom:0;left:0;right:0;height:90px;background:var(--sky);clip-path:ellipse(70% 100% at 50% 100%);opacity:.9}
+section.s{padding:clamp(3rem,8vw,6rem) clamp(1rem,5vw,4rem);max-width:1100px;margin:auto}
+h2{font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.05;margin:0 0 1rem;letter-spacing:-.01em}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+.fig{position:relative;background:var(--card);border:2px solid var(--ink);padding:1rem}
+.fig svg{width:100%;display:block}
+.dot{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:2px solid var(--ink);background:var(--card);font:700 .9rem "Familjen Grotesk",sans-serif;color:var(--ink);cursor:pointer;padding:0}
+.dot[aria-pressed=true]{background:var(--pinkd);color:#fff;border-color:var(--pinkd)}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}
+.tabs button{font:500 1rem "Familjen Grotesk",sans-serif;padding:.45rem .9rem;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--sky)}
+#panel h3{font-size:1.5rem;margin:0 0 .4rem}
+#panel .big{font:700 3rem/1 "Familjen Grotesk",sans-serif;color:var(--pinkd);margin:.4rem 0}
+#panel p{margin:.3rem 0}
+.calc{background:var(--card);border:2px solid var(--ink);padding:clamp(1rem,3vw,2rem);display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:760px){.calc{grid-template-columns:1fr}}
+label{display:block;font:500 1rem "Familjen Grotesk",sans-serif;margin-bottom:1.4rem}
+label span{float:right;font-weight:700}
+input[type=range]{width:100%;accent-color:var(--pinkd);margin-top:.5rem}
+.res{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.res div{border-top:2px solid var(--ink);padding-top:.4rem}
+.res b{font:700 1.8rem/1.1 "Familjen Grotesk",sans-serif;display:block}
+.res small{color:var(--mute)}
+#status{grid-column:1/-1;font:700 1.2rem "Familjen Grotesk",sans-serif;padding:.7rem 1rem;background:var(--ink);color:var(--sky)}
+#status.no{background:var(--pinkd);color:#fff}
+footer{padding:2rem clamp(1rem,5vw,4rem);color:var(--mute);font-size:.9rem;border-top:2px solid var(--ink)}
+</style>
+</head>
+<body>
+<nav><a href="#top">Institute for Porcine Aeronautics</a><span><a href="#anatomy">Anatomy</a><a href="#forecast">Flight forecast</a></span></nav>
+
+<header id="hero" aria-label="Live specimen tracker">
+  <div class="txt" id="top">
+    <h1>Pigs fly. We measure how.</h1>
+    <p class="lede">Since 1962, the Institute has documented <i>Sus aeronautica</i> across 31 migration corridors. Move your pointer to track the specimen.</p>
+  </div>
+  <svg id="pig" viewBox="0 0 130 80" aria-hidden="true">
+    <g id="wing"><path d="M46 30C30 8 6 4-4 8c10 2 14 8 16 12-8-2-14 0-18 4 10 0 16 4 20 8-6 2-8 6-8 10 12-4 28-6 40-12z" fill="#fff" stroke="#10243e" stroke-width="2.5" stroke-linejoin="round"/></g>
+    <path d="M24 48c-10-2-14-10-8-14" fill="none" stroke="#b8566a" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="62" cy="48" rx="38" ry="24" fill="#e9929e" stroke="#10243e" stroke-width="2.5"/>
+    <rect x="40" y="64" width="11" height="12" rx="4" fill="#b8566a" stroke="#10243e" stroke-width="2"/>
+    <rect x="78" y="64" width="11" height="12" rx="4" fill="#b8566a" stroke="#10243e" stroke-width="2"/>
+    <circle cx="100" cy="42" r="18" fill="#e9929e" stroke="#10243e" stroke-width="2.5"/>
+    <path d="M90 28l4-12 10 10z" fill="#b8566a" stroke="#10243e" stroke-width="2" stroke-linejoin="round"/>
+    <ellipse cx="116" cy="46" rx="9" ry="7" fill="#f5b7bf" stroke="#10243e" stroke-width="2.5"/>
+    <circle cx="113" cy="46" r="1.8" fill="#10243e"/><circle cx="119" cy="46" r="1.8" fill="#10243e"/>
+    <circle cx="103" cy="36" r="2.8" fill="#10243e"/>
+    <path d="M96 31q7-5 14-1" fill="none" stroke="#10243e" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <p class="hint">Specimen 0417 · cruise survey</p>
+  <div class="gauge" aria-live="off"><small>Altitude</small><b id="alt">0 m</b><small id="hdg">Heading 090° E</small></div>
+  <div class="cloud"></div>
+</header>
+
+<section class="s" id="anatomy">
+  <h2>How a 140-kilogram animal stays airborne</h2>
+  <p class="lede" style="max-width:40rem;margin-bottom:2rem">Select a numbered point on the specimen, or use the tabs, to read the Institute’s measurements.</p>
+  <div class="two">
+    <div class="fig">
+      <svg viewBox="0 0 130 80" role="img" aria-label="Diagram of a flying pig with four marked regions">
+        <path d="M46 30C30 8 6 4-4 8c10 2 14 8 16 12-8-2-14 0-18 4 10 0 16 4 20 8-6 2-8 6-8 10 12-4 28-6 40-12z" fill="#fff" stroke="#10243e" stroke-width="1.5"/>
+        <path d="M24 48c-10-2-14-10-8-14" fill="none" stroke="#b8566a" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="62" cy="48" rx="38" ry="24" fill="#e9929e" stroke="#10243e" stroke-width="1.5"/>
+        <rect x="40" y="64" width="11" height="12" rx="4" fill="#b8566a" stroke="#10243e" stroke-width="1.5"/>
+        <rect x="78" y="64" width="11" height="12" rx="4" fill="#b8566a" stroke="#10243e" stroke-width="1.5"/>
+        <circle cx="100" cy="42" r="18" fill="#e9929e" stroke="#10243e" stroke-width="1.5"/>
+        <path d="M90 28l4-12 10 10z" fill="#b8566a" stroke="#10243e" stroke-width="1.5" stroke-linejoin="round"/>
+        <ellipse cx="116" cy="46" rx="9" ry="7" fill="#f5b7bf" stroke="#10243e" stroke-width="1.5"/>
+        <circle cx="103" cy="36" r="2.4" fill="#10243e"/>
+      </svg>
+      <button class="dot" style="left:20%;top:22%" data-i="0" aria-label="Wings">1</button>
+      <button class="dot" style="left:48%;top:58%" data-i="1" aria-label="Flight muscle">2</button>
+      <button class="dot" style="left:90%;top:50%" data-i="2" aria-label="Snout">3</button>
+      <button class="dot" style="left:22%;top:62%" data-i="3" aria-label="Tail">4</button>
+    </div>
+    <div>
+      <div class="tabs" id="tabs"></div>
+      <div id="panel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="forecast">
+  <h2>Flight forecast calculator</h2>
+  <p class="lede" style="max-width:40rem;margin-bottom:2rem">Enter a pig’s body mass and today’s headwind. The model estimates wingspan, cruising altitude and range, and tells you whether to clear the pig for flight.</p>
+  <div class="calc">
+    <div>
+      <label>Body mass <span id="wv">140 kg</span><input id="w" type="range" min="40" max="300" value="140"></label>
+      <label>Headwind <span id="hv">15 km/h</span><input id="h" type="range" min="0" max="60" value="15"></label>
+    </div>
+    <div class="res">
+      <div><b id="o1"></b><small>Required wingspan</small></div>
+      <div><b id="o2"></b><small>Cruising altitude</small></div>
+      <div><b id="o3"></b><small>Range</small></div>
+      <div><b id="o4"></b><small>Flight time</small></div>
+    </div>
+    <div id="status" role="status"></div>
+  </div>
+</section>
+
+<footer>Institute for Porcine Aeronautics · Field data collected 1962–2026 · Values on this page are modeled estimates.</footer>
+
+<script>
+const hero=document.getElementById('hero'),pig=document.getElementById('pig');
+let tx=300,ty=250,x=0,y=0,px=0;
+function box(){return hero.getBoundingClientRect()}
+hero.addEventListener('pointermove',e=>{const b=box();tx=e.clientX-b.left;ty=e.clientY-b.top});
+function tick(){
+  const b=box(),w=pig.getBoundingClientRect().width;
+  x+=(tx-w/2-x)*.06;y+=(ty-40-y)*.06;
+  const dx=x-px;px=x;
+  const flip=dx<-.3?-1:1;
+  pig.style.transform=`translate(${x}px,${y}px) scaleX(${flip})`;
+  const alt=Math.max(0,Math.round((1-(y+40)/b.height)*1800));
+  document.getElementById('alt').textContent=alt.toLocaleString()+' m';
+  const hd=Math.round(((x+w/2)/b.width)*360);
+  document.getElementById('hdg').textContent='Heading '+String(hd).padStart(3,'0')+'°';
+  requestAnimationFrame(tick);
+}
+x=tx=box().width*.55;y=ty=box().height*.5;px=x;tick();
+
+const D=[
+ {t:'Wings',n:'3.8 m',d:'Average wingspan, tip to tip',p:'Feathered primaries grow from the shoulder girdle in the first 40 days after weaning. Adults molt twice a year.'},
+ {t:'Flight muscle',n:'31%',d:'Share of body mass',p:'Pectoral tissue is denser than in ground-dwelling pigs and holds more oxygen. It is the reason the meat of a flying pig is never sold.'},
+ {t:'Snout',n:'12 km',d:'Thermal detection range',p:'The snout senses rising warm air from long distances. Pigs use it to find thermals and to locate truffles from altitude.'},
+ {t:'Tail',n:'±22°',d:'Steering range',p:'The corkscrew tail acts as a rudder. Its curl tightens in turbulence, giving observers a reliable gauge of air conditions.'}
+];
+const tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
+const dots=[...document.querySelectorAll('.dot')];
+function sel(i){
+  [...tabs.children].forEach((b,j)=>b.setAttribute('aria-pressed',j==i));
+  dots.forEach((b,j)=>b.setAttribute('aria-pressed',j==i));
+  const o=D[i];
+  panel.innerHTML=`<h3>${o.t}</h3><div class="big">${o.n}</div><small class="sans" style="color:var(--mute)">${o.d}</small><p>${o.p}</p>`;
+}
+D.forEach((o,i)=>{const b=document.createElement('button');b.textContent=o.t;b.onclick=()=>sel(i);tabs.append(b)});
+dots.forEach((b,i)=>b.onclick=()=>sel(i));
+sel(0);
+
+const W=document.getElementById('w'),H=document.getElementById('h');
+function calc(){
+  const m=+W.value,h=+H.value;
+  const span=0.9+0.019*m;
+  const alt=Math.max(0,Math.round((1500-m*4-h*14)/10)*10);
+  const rng=Math.max(0,Math.round(520-m*.9-h*4.5));
+  const spd=Math.max(12,45-h*.4-m*.05);
+  const hrs=rng/spd;
+  wv.textContent=m+' kg';hv.textContent=h+' km/h';
+  o1.textContent=span.toFixed(1)+' m';
+  o2.textContent=alt.toLocaleString()+' m';
+  o3.textContent=rng+' km';
+  o4.textContent=hrs.toFixed(1)+' h';
+  const s=document.getElementById('status');
+  if(h>45){s.className='no';s.textContent='Grounded: headwind exceeds the 45 km/h limit.'}
+  else if(m>260){s.className='no';s.textContent='Grounded: body mass exceeds the 260 kg limit.'}
+  else{s.className='';s.textContent='Cleared for flight. Suggested corridor: '+(h<20?'northern':'coastal')+' route.'}
+}
+W.oninput=H.oninput=calc;calc();
+</script>
+</body>
+</html>
